@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="hu" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Show Number</title>
+    <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-<h1>Generált sorszám</h1>
-<div th:if="${queueNumber != null}">
-    <h3>
-        Üdvözöljük <span th:text="${queueNumber.name}"></span>
-        , az ön Sorszáma: <span th:text="${queueNumber.number}"></span>
+<h1> Üdvözöljük</h1>
+<div class="centered-content">
+    <h3 th:if="${queueNumber != null}">
+        <span th:text="${queueNumber.name}"></span>,
+        az ön Sorszáma: <span th:text="${queueNumber.number}" style="color: blue;"></span>
     </h3>
+    <div th:if="${queueNumber != null}">
+        <h3>Ön előtt várakozók száma: <span th:text="${count}" style="color: blue;"></span></h3>
+    </div>
 </div>
-<div >
-    <h3>Ön előtt várakozók száma: <span th:text="${count}"></span></h3>
-</div>
-<div>
+<div class="frame">
     <form th:action="@{/queue/showNumber}" method="post">
         <h1>Rögzíti?</h1>
-        <button type="submit" name="action" value="confirm">Igen</button>
-        <button type="submit" name="action" value="delete">Nem</button>
+        <button class="submit-btn" type="submit" name="action" value="confirm">Igen</button>
+        <button class="submit-btn" type="submit" name="action" value="delete">Nem</button>
     </form>
 </div>
 </body>
