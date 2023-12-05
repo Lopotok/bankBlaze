@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css"/>
 </head>
 <body>
 <header>
@@ -17,56 +17,56 @@
 
 <div id="buttons1">
 
-<form th:action="@{/admin}" method="get">
-    <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Jogosultságok</button>
-</form>
-<form th:action="@{/admin/statistics}" method="get">
-    <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Fiók áttekintő</button>
-</form>
-<form th:action="@{/admin/desk}" method="get">
-    <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Pult kiosztás</button>
-</form>
-<form th:action="@{/admin/registration}" method="get">
-    <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Új ügyintéző felvétele</button>
-</form>
-<form th:action="@{/admin/management}" method="get">
-    <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Ügyintéző kezelése</button>
-</form>
+    <form th:action="@{/admin}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Jogosultságok</button>
+    </form>
+    <form th:action="@{/admin/statistics}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Fiók áttekintő</button>
+    </form>
+    <form th:action="@{/admin/desk}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Pult kiosztás</button>
+    </form>
+    <form th:action="@{/admin/registration}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Új ügyintéző felvétele</button>
+    </form>
+    <form th:action="@{/admin/management}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Ügyintéző kezelése</button>
+    </form>
 
 </div>
 
 <div class="table-container-statistics">
 
-<table>
-    <thead>
-    <tr>
-        <th>Szolgáltatás</th>
-        <th>Várakozók</th>
-        <th>Várakozási idő</th>
-        <th>Kiszolgálás alatt</th>
-        <th>Összesen</th>
-    </tr>
+    <table>
+        <thead>
+        <tr>
+            <th>Szolgáltatás</th>
+            <th>Várakozók</th>
+            <th>Várakozási idő</th>
+            <th>Kiszolgálás alatt</th>
+            <th>Összesen</th>
+        </tr>
 
-    </thead>
-    <tbody>
-    <tr>
-        <td>Lakosság</td>
-        <td th:text="${retailCount}"></td>
-    </tr>
-    <tr>
-        <td>Vállalat</td>
-        <td th:text="${corporateCount}"></td>
-    </tr>
-    <tr>
-        <td>Pénztár</td>
-        <td th:text="${tellerCount}"></td>
-    </tr>
-    <tr>
-        <td>Premium</td>
-        <td th:text="${premiumCount}"></td>
-    </tr>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Lakosság</td>
+            <td th:text="${retailCount}"></td>
+        </tr>
+        <tr>
+            <td>Vállalat</td>
+            <td th:text="${corporateCount}"></td>
+        </tr>
+        <tr>
+            <td>Pénztár</td>
+            <td th:text="${tellerCount}"></td>
+        </tr>
+        <tr>
+            <td>Premium</td>
+            <td th:text="${premiumCount}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 </body>

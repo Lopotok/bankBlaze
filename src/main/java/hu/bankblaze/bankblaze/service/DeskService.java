@@ -55,12 +55,6 @@ public class DeskService {
         }
     }
 
-    public Long getDeskIdByLoggedInUser(Long loggedInUserId) {
-        Desk desk = deskRepository.findByEmployeeId(loggedInUserId);
-
-        return desk.getId();
-    }
-
     public Desk getDeskByEmployeeId(Long employeeId) {
         return deskRepository.findByEmployeeId(employeeId);
     }
@@ -69,7 +63,7 @@ public class DeskService {
         deskRepository.save(desk);
     }
 
-    public boolean nextQueueNumber(Employee employee) {
+    public Desk nextQueueNumber(Employee employee) {
         Desk desk = getDeskByEmployeeId(employee.getId());
         Permission permission = permissionService.getPermissionByEmployee(employee);
         List<QueueNumber> queueNumberList = new ArrayList<>();
@@ -89,10 +83,10 @@ public class DeskService {
             QueueNumber queueNumber = queueNumberService.getSmallestNumber(queueNumberList);
             desk.setQueueNumber(queueNumber);
             deskRepository.save(desk);
-            return true;
+            return desk;
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
-            return false;
+            return null;
         }
     }
 

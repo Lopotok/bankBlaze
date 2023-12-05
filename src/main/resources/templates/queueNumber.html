@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BankBlaze Get a number</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <title>Customer</title>
+    <link rel="stylesheet" href="/styles.css"/>
 </head>
 <header>
     <a th:href="@{/home}"></a>
     <form th:action="@{/queue/showNumber}" method="post">
-        <button class= "home-btn" type="submit" name="action" value="delete">Kezdőoldal</button>
+        <button class="home-btn" type="submit" name="action" value="delete">Kezdőoldal</button>
     </form>
 </header>
 <body>
@@ -17,7 +17,7 @@
     <h1>Kérjük adja meg a nevét!</h1>
     <form th:action="@{/queue/queueNumber}" method="post" class="input-container">
         <label>
-            <input class="placeholder" placeholder="Ide írja be, hogy szólíhatjuk..." type="text"  name="name"
+            <input class="placeholder" placeholder="Ide írja be, hogy szólíhatjuk..." type="text" name="name"
                    required autocomplete="off">
         </label>
 

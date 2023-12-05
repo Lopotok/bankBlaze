@@ -74,7 +74,6 @@ public class PageController {
         return "home";
     }
 
-
     @GetMapping("/login")
     public String showLogin() {
         return "login";
@@ -86,10 +85,12 @@ public class PageController {
                                    @RequestParam String password, RedirectAttributes redirectAttributes) {
         if (adminService.isAdmin(userName, password)) {
             List<GrantedAuthority> adminAuthorities = AuthorityUtils.createAuthorityList("ADMIN");
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password, adminAuthorities);
+            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password,
+                                                                                                adminAuthorities);
 
             if (SecurityContextHolder.getContext().getAuthentication() == null ||
-                    SecurityContextHolder.getContext().getAuthentication().getClass().equals(AnonymousAuthenticationToken.class)) {
+                    SecurityContextHolder.getContext().getAuthentication()
+                            .getClass().equals(AnonymousAuthenticationToken.class)) {
                 SecurityContextHolder.getContext().setAuthentication(token);
             }
             redirectAttributes.addFlashAttribute("message", "Admin Login Successful");
@@ -98,10 +99,12 @@ public class PageController {
         } else if (adminService.isUser(userName, password)) {
             // Ügyintéző jogosultság hozzáadása
             List<GrantedAuthority> clerkAuthorities = AuthorityUtils.createAuthorityList("USER");
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password, clerkAuthorities);
+            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password,
+                                                                                                clerkAuthorities);
 
             if (SecurityContextHolder.getContext().getAuthentication() == null ||
-                    SecurityContextHolder.getContext().getAuthentication().getClass().equals(AnonymousAuthenticationToken.class)) {
+                    SecurityContextHolder.getContext().getAuthentication()
+                            .getClass().equals(AnonymousAuthenticationToken.class)) {
                 SecurityContextHolder.getContext().setAuthentication(token);
             }
 

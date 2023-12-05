@@ -1,79 +1,79 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <title>Következő ügyfél</title>
-  <link rel="stylesheet" href="/styles.css" />
+    <meta charset="UTF-8">
+    <title>Next Customer</title>
+    <link rel="stylesheet" href="/styles.css"/>
 </head>
 
 <body>
 <header>
-  <h1 class="admin-name" th:text="${desk.getEmployee().getName()}"></h1>
-  <h2 class="desk1-name"> A pult száma:&nbsp;<span id="id-color" th:text="${desk.getId()}"></span></h2>
+    <h1 class="admin-name" th:text="${desk.getEmployee().getName()}"></h1>
+    <h2 class="desk1-name"> A pult száma:&nbsp;<span id="id-color" th:text="${desk.getId()}"></span></h2>
 </header>
 
 <h2 class="desk-name">Várakozó ügyfelek</h2>
 
 <div class="table-container-employee">
-<table>
+    <table>
 
-  <tr>
-    <th>Lakosság</th>
-    <th>Vállalat</th>
-    <th>Pénztár</th>
-    <th>Premium</th>
-  </tr>
+        <tr>
+            <th>Lakosság</th>
+            <th>Vállalat</th>
+            <th>Pénztár</th>
+            <th>Premium</th>
+        </tr>
 
-  <tr>
-    <td th:text="${retailCount}"></td>
-    <td th:text="${corporateCount}"></td>
-    <td th:text="${tellerCount}"></td>
-    <td th:text="${premiumCount}"></td>
-  </tr>
-</table>
+        <tr>
+            <td th:text="${retailCount}"></td>
+            <td th:text="${corporateCount}"></td>
+            <td th:text="${tellerCount}"></td>
+            <td th:text="${premiumCount}"></td>
+        </tr>
+    </table>
 </div>
 
 <h2 class="desk3-name"><span th:text="${actualPermission}"></span></h2>
 
 <div class="table-container-employee">
-<table>
+    <table>
 
-  <tr>
-    <th>Várakozók</th>
-    <th>Csapat létszám</th>
-  </tr>
+        <tr>
+            <th>Várakozók</th>
+            <th>Csapat létszám</th>
+        </tr>
 
 
-  <tr>
-    <td th:text="${actualCount}"></td>
-    <td th:text="${employeeCount}"></td>
-  </tr>
+        <tr>
+            <td th:text="${actualCount}"></td>
+            <td th:text="${employeeCount}"></td>
+        </tr>
 
-</table>
+    </table>
 </div>
 
 <h2 id="next-customer"> A következő <span th:text="${actualPermission}"></span>i ügyfél:
-  <span th:text="${desk.getQueueNumber().getName()}"></span></h2>
+    <span th:text="${desk.getQueueNumber().getName()}"></span></h2>
 
 <div class="number-direct">
-<form th:action="@{/employee/redirect}" method="get">
-  <label id="number-direct-label" for="redirectLocation">Sorszám átirányítása:</label>
-  <select id="redirectLocation" name="redirectLocation" required>
-    <option value="retail">Lakosság</option>
-    <option value="corporate">Vállalat</option>
-    <option value="teller">Pénztár</option>
-    <option value="premium">Prémium</option>
-  </select>
-  <button type="submit">Átirányítás</button>
-</form>
+    <form th:action="@{/employee/redirect}" method="get">
+        <label id="number-direct-label" for="redirectLocation">Sorszám átirányítása:</label>
+        <select id="redirectLocation" name="redirectLocation" required>
+            <option value="retail">Lakosság</option>
+            <option value="corporate">Vállalat</option>
+            <option value="teller">Pénztár</option>
+            <option value="premium">Prémium</option>
+        </select>
+        <button type="submit">Átirányítás</button>
+    </form>
 
-<form th:action="@{/employee/closure}" method="get">
-  <button type="submit"> Lezárás</button>
-</form>
+    <form th:action="@{/employee/closure}" method="get">
+        <button type="submit"> Lezárás</button>
+    </form>
 
-<form th:action="@{/employee/deleteNumber}" method="get">
-  <button type="submit"> Törlés</button>
-</form>
+    <form th:action="@{/employee/deleteNumber}" method="get">
+        <button type="submit"> Törlés</button>
+    </form>
 </div>
 
 </body>

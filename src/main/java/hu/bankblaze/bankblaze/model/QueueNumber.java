@@ -25,6 +25,6 @@ public class QueueNumber {
     private Boolean toPremium = false;
     private Boolean active = true;
 
-    @OneToMany(mappedBy = "queueNumber", cascade = CascadeType.REMOVE)
-    private List<Desk> desks = new ArrayList<>();
+    /*@OneToMany(mappedBy = "queueNumber", cascade = CascadeType.REMOVE)
+    private List<Desk> desks = new ArrayList<>();*/
 }

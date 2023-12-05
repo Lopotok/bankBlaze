@@ -21,10 +21,6 @@ public class TellerService {
         return tellerRepository.findAll();
     }
 
-    public Teller getTellerById(Long id) {
-        return tellerRepository.findById(id).orElse(null);
-    }
-
     public int generateQueueNumber(int number) {
         int queueNumber = 0;
         switch (number) {

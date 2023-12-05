@@ -1,10 +1,6 @@
 package hu.bankblaze.bankblaze.controller;
 
 import hu.bankblaze.bankblaze.model.Employee;
-import hu.bankblaze.bankblaze.repo.DeskRepository;
-import hu.bankblaze.bankblaze.repo.EmployeeRepository;
-import hu.bankblaze.bankblaze.repo.PermissionRepository;
-import hu.bankblaze.bankblaze.repo.QueueNumberRepository;
 import hu.bankblaze.bankblaze.service.AdminService;
 import hu.bankblaze.bankblaze.service.DeskService;
 import hu.bankblaze.bankblaze.service.PermissionService;

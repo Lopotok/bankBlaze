@@ -1,80 +1,80 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <title>Admin</title>
-  <link rel="stylesheet" href="/styles.css" />
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/styles.css"/>
 </head>
 <body>
 <header>
-  <h1 class="admin-name" th:text="${admins.get(0).getName() + ' - Jogosultságok'}"></h1>
- <h3 class="logout-btn"><a th:href="@{/logout}">Kijelentkezés</a></h3>
-  <form th:action="@{admin/eod}" method="post">
-    <button class="end-btn" type="submit">Napzárás</button>
-  </form>
+    <h1 class="admin-name" th:text="${admins.get(0).getName() + ' - Jogosultságok'}"></h1>
+    <h3 class="logout-btn"><a th:href="@{/logout}">Kijelentkezés</a></h3>
+    <form th:action="@{admin/eod}" method="post">
+        <button class="end-btn" type="submit">Napzárás</button>
+    </form>
 </header>
 
 
 <div id="buttons1">
 
-<form th:action="@{/admin}" method="get">
-  <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Jogosultságok</button>
-</form>
-<form th:action="@{/admin/statistics}" method="get">
-  <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Fiók áttekintő</button>
-</form>
-<form th:action="@{/admin/desk}" method="get">
-  <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Pult kiosztás</button>
-</form>
-<form th:action="@{/admin/registration}" method="get">
-  <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Új ügyintéző felvétele</button>
-</form>
-<form th:action="@{/admin/management}" method="get">
-  <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Ügyintéző kezelése</button>
-</form>
+    <form th:action="@{/admin}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Jogosultságok</button>
+    </form>
+    <form th:action="@{/admin/statistics}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Fiók áttekintő</button>
+    </form>
+    <form th:action="@{/admin/desk}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Pult kiosztás</button>
+    </form>
+    <form th:action="@{/admin/registration}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Új ügyintéző felvétele</button>
+    </form>
+    <form th:action="@{/admin/management}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Ügyintéző kezelése</button>
+    </form>
 
 </div>
 
 <div class="table-container">
-<form th:action="@{/admin/update}" method="post">
-  <table>
-    <thead>
-    <tr>
-      <th>Felhasználók</th>
-      <th>Lakosság</th>
-      <th>Vállalat</th>
-      <th>Pénztár</th>
-      <th>Premium</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="current, iterStat: ${permissions}">
-      <td th:text="${current.employee.getName()}"></td>
-      <td>
-        <input type="checkbox" th:checked="${current.forRetail}" th:name="'forRetail-'+ ${current.id}"
-               th:value="true">
-        <input type="hidden" th:name="'forRetail-'+ ${current.id}" th:value="false">
-      </td>
-      <td>
-        <input type="checkbox" th:checked="${current.forCorporate}" th:name="'forCorporate-'+ ${current.id}"
-               th:value="true">
-        <input type="hidden" th:name="'forCorporate-'+ ${current.id}" th:value="false">
-      </td>
-      <td>
-        <input type="checkbox" th:checked="${current.forTeller}" th:name="'forTeller-'+ ${current.id}"
-               th:value="true">
-        <input type="hidden" th:name="'forTeller-'+ ${current.id}" th:value="false">
-      </td>
-      <td>
-        <input type="checkbox" th:checked="${current.forPremium}" th:name="'forPremium-'+ ${current.id}"
-               th:value="true">
-        <input type="hidden" th:name="'forPremium-'+ ${current.id}" th:value="false">
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <button class="save-btn" type="submit">Mentés</button>
-</form>
+    <form th:action="@{/admin/update}" method="post">
+        <table>
+            <thead>
+            <tr>
+                <th>Felhasználók</th>
+                <th>Lakosság</th>
+                <th>Vállalat</th>
+                <th>Pénztár</th>
+                <th>Premium</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="current, iterStat: ${permissions}">
+                <td th:text="${current.employee.getName()}"></td>
+                <td>
+                    <input type="checkbox" th:checked="${current.forRetail}" th:name="'forRetail-'+ ${current.id}"
+                           th:value="true">
+                    <input type="hidden" th:name="'forRetail-'+ ${current.id}" th:value="false">
+                </td>
+                <td>
+                    <input type="checkbox" th:checked="${current.forCorporate}" th:name="'forCorporate-'+ ${current.id}"
+                           th:value="true">
+                    <input type="hidden" th:name="'forCorporate-'+ ${current.id}" th:value="false">
+                </td>
+                <td>
+                    <input type="checkbox" th:checked="${current.forTeller}" th:name="'forTeller-'+ ${current.id}"
+                           th:value="true">
+                    <input type="hidden" th:name="'forTeller-'+ ${current.id}" th:value="false">
+                </td>
+                <td>
+                    <input type="checkbox" th:checked="${current.forPremium}" th:name="'forPremium-'+ ${current.id}"
+                           th:value="true">
+                    <input type="hidden" th:name="'forPremium-'+ ${current.id}" th:value="false">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="save-btn" type="submit">Mentés</button>
+    </form>
 </div>
 
 </body>

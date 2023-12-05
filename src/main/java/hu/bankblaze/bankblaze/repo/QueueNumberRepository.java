@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Repository
 public interface QueueNumberRepository extends JpaRepository<QueueNumber, Long> {
@@ -18,21 +17,13 @@ public interface QueueNumberRepository extends JpaRepository<QueueNumber, Long> 
     Integer getLastNumber(@Param("firstDigits") int numbers);
 
     QueueNumber findFirstByActiveTrueAndToRetailTrue();
-
     QueueNumber findFirstByActiveTrueAndToCorporateTrue();
-
     QueueNumber findFirstByActiveTrueAndToTellerTrue();
-
     QueueNumber findFirstByActiveTrueAndToPremiumTrue();
-    void deleteByNumber(int number);
-
 
     int countByActiveIsTrueAndToRetailIsTrue();
-
     int countByActiveIsTrueAndToCorporateIsTrue();
-
     int countByActiveIsTrueAndToTellerIsTrue();
-
     int countByActiveIsTrueAndToPremiumIsTrue();
 
 }

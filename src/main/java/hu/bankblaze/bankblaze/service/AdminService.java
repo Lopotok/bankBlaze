@@ -13,10 +13,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -67,20 +65,10 @@ public class AdminService {
         }
     }
 
-
     public void modifyEmployeeByName(String name, String newRole) {
         Employee employee = employeeRepository.getAdminByName(name);
         employee.setRole(newRole);
         employeeRepository.save(employee);
-    }
-
-    public boolean checkLogin(String userName, String password) {
-        // TODO Auto-generated method stub
-        Optional<Employee> employee = employeeRepository.findByName(userName);
-        if (employee.isPresent() && passwordEncoder.matches(password, employee.get().getPassword())) {
-            return true;
-        }
-        return false;
     }
 
     public boolean isAdmin(String userName, String password) {
@@ -101,19 +89,9 @@ public class AdminService {
         return false;
     }
 
-
-
-
     public Employee getEmployeeByName(String name) {
         return employeeRepository.findByName(name).orElse(null);
     }
-
-
-    public Long getLoggedInUserIdByUsername(String loggedInUsername) {
-        Optional<Employee> employeeOptional = employeeRepository.findByName(loggedInUsername);
-        return employeeOptional.map(Employee::getId).orElse(null);
-    }
-
 
     public String getLoggedInUsername() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -137,7 +115,6 @@ public class AdminService {
 
     public int setEmployeeCount(Employee employee) {
         Permission permission = permissionService.getPermissionByEmployee(employee);
-
         int employeeCount = 0;
         if (permission.getForRetail()) {
             employeeCount = permissionRepository.countByForRetailTrue();
@@ -167,7 +144,6 @@ public class AdminService {
         return nextQueueNumber;
     }
 
-
     public void processNextQueueNumber(QueueNumber nextQueueNumber) {
         if (nextQueueNumber != null) {
             nextQueueNumber.setActive(false);
@@ -175,17 +151,16 @@ public class AdminService {
         }
     }
 
-
     public void processRedirect(QueueNumber nextQueueNumber, String redirectLocation) {
         if (nextQueueNumber != null) {
             nextQueueNumber.setToRetail("retail".equals(redirectLocation));
             nextQueueNumber.setToCorporate("corporate".equals(redirectLocation));
             nextQueueNumber.setToTeller("teller".equals(redirectLocation));
             nextQueueNumber.setToPremium("premium".equals(redirectLocation));
-
             queueNumberRepository.save(nextQueueNumber);
         }
     }
+
     public void deleteNextQueueNumber(QueueNumber nextQueueNumber) {
         if (nextQueueNumber != null) {
             Desk desk = deskService.findDeskByQueueNumber(nextQueueNumber);
@@ -199,8 +174,6 @@ public class AdminService {
         }
     }
 
-
-
     public String setActualPermission(Employee employee) {
         Permission permission = permissionService.getPermissionByEmployee(employee);
         String actualPermission = null;
@@ -209,7 +182,7 @@ public class AdminService {
         } else if (permission.getForCorporate()) {
             actualPermission = "Vállalat";
         } else if (permission.getForTeller()) {
-            actualPermission  = "Pénztár";
+            actualPermission = "Pénztár";
         } else if (permission.getForPremium()) {
             actualPermission = "Prémium";
         }

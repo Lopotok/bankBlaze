@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css"/>
 </head>
 <body>
 <header>
@@ -16,21 +16,21 @@
 
 <div id="buttons1">
 
-<form th:action="@{/admin}" method="get">
-    <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Jogosultságok</button>
-</form>
-<form th:action="@{/admin/statistics}" method="get">
-    <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Fiók áttekintő</button>
-</form>
-<form th:action="@{/admin/desk}" method="get">
-    <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Pult kiosztás</button>
-</form>
-<form th:action="@{/admin/registration}" method="get">
-    <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Új ügyintéző felvétele</button>
-</form>
-<form th:action="@{/admin/management}" method="get">
-    <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Ügyintéző kezelése</button>
-</form>
+    <form th:action="@{/admin}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Jogosultságok</button>
+    </form>
+    <form th:action="@{/admin/statistics}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Fiók áttekintő</button>
+    </form>
+    <form th:action="@{/admin/desk}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Pult kiosztás</button>
+    </form>
+    <form th:action="@{/admin/registration}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Új ügyintéző felvétele</button>
+    </form>
+    <form th:action="@{/admin/management}" method="get">
+        <button class="btn1" style="--clr:rgb(7, 197, 245);" type="submit">Ügyintéző kezelése</button>
+    </form>
 
 </div>
 
@@ -43,9 +43,9 @@
     </select>
     <!--input type="text" id="employeeName" name="name" /-->
     <div class="action-buttons">
-    <button class="action-btn" type="submit" name="action" value="USER">Aktiválás</button>
-    <button class="action-btn" type="submit" name="action" value="inactive">Deaktiválás</button>
-    <button class="action-btn" type="submit" name="action" value="delete">Törlés</button>
+        <button class="action-btn" type="submit" name="action" value="USER">Aktiválás</button>
+        <button class="action-btn" type="submit" name="action" value="inactive">Deaktiválás</button>
+        <button class="action-btn" type="submit" name="action" value="delete">Törlés</button>
     </div>
 </form>
 </body>

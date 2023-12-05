@@ -41,26 +41,19 @@ public class EmployeeController {
         model.addAttribute("premiumCount", queueNumberService.countPremium()+1);
         model.addAttribute("actualCount", adminService.setActualCount(employee));
         model.addAttribute("employeeCount", adminService.setEmployeeCount(employee));
-
         return "employee";
     }
 
     @PostMapping
     public String nextQueueNumber(Model model) {
         Employee employee = adminService.getEmployeeByName(adminService.getLoggedInUsername());
-        Desk desk = deskService.getDeskByEmployeeId(employee.getId());
-        model.addAttribute("actualPermission", adminService.setActualPermission(employee));
-        if (deskService.nextQueueNumber(employee)) {
-            if (desk != null) {
-                simpMessagingTemplate.convertAndSend("/topic/app", desk);
-            }
+        Desk desk = deskService.nextQueueNumber(employee);
+        if (desk != null) {
+            model.addAttribute("actualPermission", adminService.setActualPermission(employee));
+            simpMessagingTemplate.convertAndSend("/topic/app", desk);
             return "redirect:/desk/next";
         }
         return "redirect:/employee";
-    }
-
-    private void sendMessage(Desk desk) {
-        simpMessagingTemplate.convertAndSend("/topic/app", desk);
     }
 
     @GetMapping("/closure")
@@ -73,6 +66,7 @@ public class EmployeeController {
         adminService.processNextQueueNumber(nextQueueNumber);
         return "redirect:/employee";
     }
+
     @GetMapping("/redirect")
     public String getRedirect(Model model, @RequestParam("redirectLocation") String redirectLocation) {
         Employee employee = adminService.getEmployeeByName(adminService.getLoggedInUsername());

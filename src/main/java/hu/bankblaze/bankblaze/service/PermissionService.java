@@ -114,7 +114,11 @@ public class PermissionService {
         return (maxId != null) ? maxId + 1 : 1L;
     }
 
-    public void createPermissionForEmployee(Employee employee, String defaultPermissionRetail, String defaultPermissionCorporate, String defaultPermissionTeller, String defaultPermissionPremium) {
+    public void createPermissionForEmployee(Employee employee,
+                                            String defaultPermissionRetail,
+                                            String defaultPermissionCorporate,
+                                            String defaultPermissionTeller,
+                                            String defaultPermissionPremium) {
         Long nextId = getNextPermissionId();
 
         Permission permission = new Permission();

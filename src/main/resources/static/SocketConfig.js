@@ -34,7 +34,6 @@ function notify() {
 }
 
 function flashing(desk) {
-    console.log(desk);
     let currentNumber = document.getElementById('queueNumber' + desk.id);
     let currentDesk = document.getElementById('desk' + desk.id);
     currentNumber.classList.add('flash');

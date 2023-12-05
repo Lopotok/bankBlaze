@@ -21,10 +21,6 @@ public class RetailService {
         return retailRepository.findAll();
     }
 
-    public Retail getRetailById(Long id) {
-        return retailRepository.findById(id).orElse(null);
-    }
-
     public int generateQueueNumber(int number) {
         int queueNumber = 0;
         switch (number) {

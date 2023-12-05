@@ -1,5 +1,6 @@
 package hu.bankblaze.bankblaze.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,8 +15,10 @@ public class Desk {
     private Long id;
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "employee_id")
+    @JsonManagedReference
     private Employee employee;
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "queue_number_id")
+    @JsonManagedReference
     private QueueNumber queueNumber;
 }

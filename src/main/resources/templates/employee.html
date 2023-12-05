@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <title>Employee</title>
-  <link rel="stylesheet" href="/styles.css" />
+    <meta charset="UTF-8">
+    <title>Employee</title>
+    <link rel="stylesheet" href="/styles.css"/>
 </head>
 <body>
 <header>
-  <h1 class="admin-name" th:text="${desk.getEmployee().getName()}"></h1>
-  <h2 class="desk1-name"> A pult száma:&nbsp;<span id="id-color" th:text="${desk.getId()}"></span></h2>
-  <h3 class="logout-btn"><a th:href="@{/logout}">Kijelentkezés</a></h3>
+    <h1 class="admin-name" th:text="${desk.getEmployee().getName()}"></h1>
+    <h2 class="desk1-name"> A pult száma:&nbsp;<span id="id-color" th:text="${desk.getId()}"></span></h2>
+    <h3 class="logout-btn"><a th:href="@{/logout}">Kijelentkezés</a></h3>
 </header>
 <h2 class="desk-name"> Várakozó ügyfelek</h2>
 
 <div class="table-container-employee">
 
-<table>
+    <table>
 
-  <tr>
-    <th>Lakosság</th>
-    <th>Vállalat</th>
-    <th>Pénztár</th>
-    <th>Premium</th>
-  </tr>
+        <tr>
+            <th>Lakosság</th>
+            <th>Vállalat</th>
+            <th>Pénztár</th>
+            <th>Premium</th>
+        </tr>
 
-  <tr>
-    <td th:text="${retailCount}"></td>
-    <td th:text="${corporateCount}"></td>
-    <td th:text="${tellerCount}"></td>
-    <td th:text="${premiumCount}"></td>
-  </tr>
+        <tr>
+            <td th:text="${retailCount}"></td>
+            <td th:text="${corporateCount}"></td>
+            <td th:text="${tellerCount}"></td>
+            <td th:text="${premiumCount}"></td>
+        </tr>
 
-</table>
+    </table>
 </div>
 
-<h2 class="desk2-name"> <span th:text="${actualPermission}"> </span></h2>
+<h2 class="desk2-name"><span th:text="${actualPermission}"> </span></h2>
 
 <div class="table-container-employee">
 
-<table>
+    <table>
 
-  <tr>
-    <th>Várakozók</th>
-    <th>Csapat létszám</th>
-  </tr>
+        <tr>
+            <th>Várakozók</th>
+            <th>Csapat létszám</th>
+        </tr>
 
-  <tr>
-    <td th:text="${actualCount}"></td>
-    <td th:text="${employeeCount}"></td>
-  </tr>
+        <tr>
+            <td th:text="${actualCount}"></td>
+            <td th:text="${employeeCount}"></td>
+        </tr>
 
-</table>
+    </table>
 </div>
 
 <form th:action="@{/employee}" method="post">
-  <button class="next-customer-btn" type="submit">Következő ügyfél</button>
+    <button class="next-customer-btn" type="submit">Következő ügyfél</button>
 </form>
 </body>
 </html>

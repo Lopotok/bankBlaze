@@ -21,11 +21,11 @@ public class Employee {
     private String role;
     private String password;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
+    /*@OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
     private List<Permission> permissions = new ArrayList<>();
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
-    private List<Desk> desks = new ArrayList<>();
+    private List<Desk> desks = new ArrayList<>();*/
 
 }
 

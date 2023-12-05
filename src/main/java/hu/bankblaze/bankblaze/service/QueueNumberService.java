@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -19,7 +18,6 @@ public class QueueNumberService {
 
     @Autowired
     private QueueNumberRepository queueNumberRepository;
-    private AdminService adminService;
 
 
     public void deleteQueueNumberById(Long id) {
@@ -46,10 +44,6 @@ public class QueueNumberService {
 
     public QueueNumber getQueueNumberById(Long id) {
         return queueNumberRepository.findById(id).orElse(null);
-    }
-
-    public List<QueueNumber> getAllQueueNumbers() {
-        return queueNumberRepository.findAll();
     }
 
     public void addQueueNumber(QueueNumber newQueueNumber) {
@@ -123,9 +117,7 @@ public class QueueNumberService {
         }
         throw new Exception();
     }
-    public void deleteQueueNumberByNumber(int numberToDelete) {
-        queueNumberRepository.deleteByNumber(numberToDelete);
-    }
+
     public QueueNumber getNextRetail() {
         return queueNumberRepository.findFirstByActiveTrueAndToRetailTrue();
     }
@@ -143,6 +135,7 @@ public class QueueNumberService {
 
         return queueNumberRepository.findFirstByActiveTrueAndToPremiumTrue();
     }
+
     public QueueNumber getSmallestNumber(List<QueueNumber> queueNumberList){
         Long minIndex = queueNumberList.get(0).getId();
         for (int i = 1; i < queueNumberList.size(); i++) {
