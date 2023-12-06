@@ -1,5 +1,6 @@
 package hu.bankblaze.bankblaze.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,11 +22,13 @@ public class Employee {
     private String role;
     private String password;
 
-    /*@OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
+    @JsonBackReference
     private List<Permission> permissions = new ArrayList<>();
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
-    private List<Desk> desks = new ArrayList<>();*/
+    @JsonBackReference
+    private List<Desk> desks = new ArrayList<>();
 
 }
 

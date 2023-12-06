@@ -37,36 +37,43 @@
 
 <div class="table-container-statistics">
 
-    <table>
-        <thead>
-        <tr>
-            <th>Szolgáltatás</th>
-            <th>Várakozók</th>
-            <th>Várakozási idő</th>
-            <th>Kiszolgálás alatt</th>
-            <th>Összesen</th>
-        </tr>
+<table>
+    <thead>
+    <tr>
+        <th>Szolgáltatás</th>
+        <th>Várakozók száma</th>
+        <th>Kiszolgálás alatt</th>
+        <th>Összesen</th>
+    </tr>
 
-        </thead>
-        <tbody>
-        <tr>
-            <td>Lakosság</td>
-            <td th:text="${retailCount}"></td>
-        </tr>
-        <tr>
-            <td>Vállalat</td>
-            <td th:text="${corporateCount}"></td>
-        </tr>
-        <tr>
-            <td>Pénztár</td>
-            <td th:text="${tellerCount}"></td>
-        </tr>
-        <tr>
-            <td>Premium</td>
-            <td th:text="${premiumCount}"></td>
-        </tr>
-        </tbody>
-    </table>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Lakosság</td>
+        <td th:text="${retailLeft} < 0 ? 0 : ${retailLeft}"></td>
+        <td th:text="${retailAtDesk}"></td>
+        <td th:text="${retailSum}"></td>
+    </tr>
+    <tr>
+        <td>Vállalat</td>
+        <td th:text="${corporateLeft} < 0 ? 0 : ${corporateLeft} "></td>
+        <td th:text="${corporateAtDesk}"></td>
+        <td th:text="${corporateSum}"></td>
+    </tr>
+    <tr>
+        <td>Pénztár</td>
+        <td th:text="${tellerLeft} < 0 ? 0 : ${tellerLeft}"></td>
+        <td th:text="${tellerAtDesk}"></td>
+        <td th:text="${tellerSum}"></td>
+    </tr>
+    <tr>
+        <td>Premium</td>
+        <td th:text="${premiumLeft} < 0 ? 0 : ${premiumLeft}"></td>
+        <td th:text="${premiumAtDesk}"></td>
+        <td th:text="${premiumSum}"></td>
+    </tr>
+    </tbody>
+</table>
 </div>
 
 </body>

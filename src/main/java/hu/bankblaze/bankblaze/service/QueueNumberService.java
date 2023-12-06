@@ -1,6 +1,8 @@
 package hu.bankblaze.bankblaze.service;
 
+import hu.bankblaze.bankblaze.model.Desk;
 import hu.bankblaze.bankblaze.model.QueueNumber;
+import hu.bankblaze.bankblaze.repo.DeskRepository;
 import hu.bankblaze.bankblaze.repo.QueueNumberRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -18,6 +20,8 @@ public class QueueNumberService {
 
     @Autowired
     private QueueNumberRepository queueNumberRepository;
+    private DeskRepository deskRepository;
+
 
 
     public void deleteQueueNumberById(Long id) {
@@ -31,9 +35,19 @@ public class QueueNumberService {
 
     public void deleteAllQueueNumbers () {
         try {
+            List<QueueNumber> allQueueNumbers = queueNumberRepository.findAll();
+
+            for (QueueNumber queueNumber : allQueueNumbers) {
+                // Eltávolítjuk a QueueNumber hivatkozását a Deskről
+                List<Desk> desksWithQueueNumber = deskRepository.findDeskByQueueNumber(queueNumber);
+                for (Desk desk : desksWithQueueNumber) {
+                    desk.setQueueNumber(null);
+                    deskRepository.save(desk);
+                }
+            }
+            // Majd töröljük az összes QueueNumber-t
             queueNumberRepository.deleteAll();
         } catch (Exception e) {
-
             throw new RuntimeException("Nem sikerült az összes entitás törlése.", e);
         }
     }
@@ -92,19 +106,19 @@ public class QueueNumberService {
     }
 
     public int countRetail() {
-        return queueNumberRepository.countByActiveIsTrueAndToRetailIsTrue() - 1;
+        return queueNumberRepository.countByActiveIsTrueAndToRetailIsTrue();
     }
 
     public int countCorporate() {
-        return queueNumberRepository.countByActiveIsTrueAndToCorporateIsTrue() - 1;
+        return queueNumberRepository.countByActiveIsTrueAndToCorporateIsTrue();
     }
 
     public int countTeller() {
-        return queueNumberRepository.countByActiveIsTrueAndToTellerIsTrue() - 1;
+        return queueNumberRepository.countByActiveIsTrueAndToTellerIsTrue();
     }
 
     public int countPremium() {
-        return queueNumberRepository.countByActiveIsTrueAndToPremiumIsTrue() - 1;
+        return queueNumberRepository.countByActiveIsTrueAndToPremiumIsTrue();
     }
 
     public int getCount() throws Exception {

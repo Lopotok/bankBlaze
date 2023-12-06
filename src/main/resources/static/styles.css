@@ -495,6 +495,7 @@ h1 {
   padding-right: 1cm;
   box-sizing: border-box;
   background-color: white;
+  transition: 0.3s;
 }
 .submit-btn:hover{
   color: rgb(22, 131, 233);
@@ -579,6 +580,7 @@ h1 {
 .table-container-employee td{
   height: 2em;
   font-size: 1.5vw;
+  background-color: #fff;
   border: 1px solid black;
   box-shadow: 1px 1px 10px #525151;
 }
@@ -610,7 +612,7 @@ h1 {
   letter-spacing: 0.1em;
   font-weight: 400;
   transition: 0.3s;
-  width: auto;
+  width: 10em;
   height: 2em;
   margin-right: 10px;
 }
@@ -643,6 +645,7 @@ h1 {
 
 #number-direct-label{
   font-size: 1.25em;
+  padding-right: 0.3em;
 }
 form {
   text-align: center;
@@ -666,4 +669,22 @@ form {
   padding: 20px;
   width: fit-content;
   margin: 0 auto;
+}
+
+.first-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  padding-top: 4%;
+}
+
+.queue-number-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  padding-top: 6%;
 }

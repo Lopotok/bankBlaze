@@ -188,6 +188,16 @@ public class AdminService {
         }
         return actualPermission;
     }
+    public void deleteAdminAndRelatedData(String name) {
+        Employee employee = employeeRepository.findByName(name).orElse(null);
+        if (employee != null) {
+            deskService.removeEmployeeFromDesk(employee.getId());
+            permissionService.deleteEmployee(employee.getId());
+            employeeRepository.deleteById(employee.getId());
+
+        }
+    }
+
 }
 
 

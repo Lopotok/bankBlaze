@@ -1,7 +1,10 @@
 package hu.bankblaze.bankblaze.controller;
 
+import hu.bankblaze.bankblaze.model.Desk;
 import hu.bankblaze.bankblaze.model.Employee;
 import hu.bankblaze.bankblaze.model.Permission;
+import hu.bankblaze.bankblaze.repo.DeskRepository;
+import hu.bankblaze.bankblaze.repo.EmployeeRepository;
 import hu.bankblaze.bankblaze.service.AdminService;
 import hu.bankblaze.bankblaze.service.DeskService;
 import hu.bankblaze.bankblaze.service.PermissionService;
@@ -45,10 +48,22 @@ public class AdminController {
     @GetMapping("/statistics")
     public String getStatistics(Model model) {
         model.addAttribute("admins", adminService.getAllAdmins());
-        model.addAttribute("retailCount", queueNumberService.countRetail());
-        model.addAttribute("corporateCount", queueNumberService.countCorporate());
-        model.addAttribute("tellerCount", queueNumberService.countTeller());
-        model.addAttribute("premiumCount", queueNumberService.countPremium());
+        model.addAttribute("retailLeft",
+                queueNumberService.countRetail() - deskService.countRetailCustomersUnderService());
+        model.addAttribute("retailAtDesk", deskService.countRetailCustomersUnderService());
+        model.addAttribute("retailSum", queueNumberService.countRetail());
+        model.addAttribute("corporateLeft",
+                queueNumberService.countCorporate() - deskService.countCorporateCustomersUnderService());
+        model.addAttribute("corporateAtDesk", deskService.countCorporateCustomersUnderService());
+        model.addAttribute("corporateSum", queueNumberService.countCorporate());
+        model.addAttribute("tellerLeft",
+                queueNumberService.countTeller() - deskService.countTellerCustomersUnderService());
+        model.addAttribute("tellerAtDesk", deskService.countTellerCustomersUnderService());
+        model.addAttribute("tellerSum", queueNumberService.countTeller());
+        model.addAttribute("premiumLeft",
+                queueNumberService.countPremium() - deskService.countPremiumCustomersUnderService());
+        model.addAttribute("premiumAtDesk", deskService.countPremiumCustomersUnderService());
+        model.addAttribute("premiumSum", queueNumberService.countPremium());
         return "statistics";
     }
 
@@ -100,7 +115,7 @@ public class AdminController {
     public String setManagement(@RequestParam("action") String action, String name) {
         switch (action) {
             case "USER", "inactive" -> adminService.modifyEmployeeByName(name, action);
-            case "delete" -> adminService.deleteAdminByName(name);
+            case "delete" -> adminService.deleteAdminAndRelatedData(name);
         }
 
         return "redirect:/admin";
@@ -117,17 +132,5 @@ public class AdminController {
         queueNumberService.deleteAllQueueNumbers();
         return "redirect:/admin";
     }
-    @GetMapping("/delete")
-    public String showDeleteForm(Model model) {
-        model.addAttribute("admins", adminService.getAllAdmins());
-        model.addAttribute("admins", adminService.getAllClerks());
-        return "delete";
-    }
-    @PostMapping("/delete")
-    public String deleteAdmin(@RequestParam("action") String action, String name) {
-        if (action.equals("delete")) {
-            adminService.deleteAdminByName(name);
-        }
-        return "redirect:/admin";
-    }
+
 }

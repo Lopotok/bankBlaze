@@ -19,6 +19,7 @@ public class DeskService {
     private QueueNumberService queueNumberService;
     private PermissionService permissionService;
 
+
     public Desk getDeskById(Long id) {
         return deskRepository.findById(id).orElse(null);
     }
@@ -59,6 +60,13 @@ public class DeskService {
         return deskRepository.findByEmployeeId(employeeId);
     }
 
+    public void removeEmployeeFromDesk(Long employeeId){
+        Desk deskWithEmployeeId = getDeskByEmployeeId(employeeId);
+        if (deskWithEmployeeId != null) {
+            deskWithEmployeeId.setEmployee(null);
+            deskRepository.save(deskWithEmployeeId);
+        }
+    }
     public void saveDesk(Desk desk) {
         deskRepository.save(desk);
     }
@@ -94,4 +102,23 @@ public class DeskService {
         return deskRepository.findByQueueNumber(queueNumber);
     }
 
+    public int countCustomersUnderService() {
+        return deskRepository.countByQueueNumberIsNotNull();
+    }
+
+    public int countRetailCustomersUnderService() {
+        return deskRepository.countByQueueNumberIsNotNullAndQueueNumberToRetailIsTrue();
+    }
+
+    public int countCorporateCustomersUnderService() {
+        return deskRepository.countByQueueNumberIsNotNullAndQueueNumberToCorporateIsTrue();
+    }
+
+    public int countTellerCustomersUnderService() {
+        return deskRepository.countByQueueNumberIsNotNullAndQueueNumberToTellerTrue();
+    }
+
+    public int countPremiumCustomersUnderService() {
+        return deskRepository.countByQueueNumberIsNotNullAndQueueNumberToPremiumIsTrue();
+    }
 }

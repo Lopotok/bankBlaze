@@ -26,14 +26,13 @@ public class DeskController {
     public String getNextClient(Model model) {
         Employee employee = adminService.getEmployeeByName(adminService.getLoggedInUsername());
         model.addAttribute("desk", deskService.getDeskByEmployeeId(employee.getId()));
-        model.addAttribute("retailCount", queueNumberService.countRetail()+1);
-        model.addAttribute("corporateCount", queueNumberService.countCorporate()+1);
-        model.addAttribute("tellerCount", queueNumberService.countTeller()+1);
-        model.addAttribute("premiumCount", queueNumberService.countPremium()+1);
+        model.addAttribute("retailCount", queueNumberService.countRetail());
+        model.addAttribute("corporateCount", queueNumberService.countCorporate());
+        model.addAttribute("tellerCount", queueNumberService.countTeller());
+        model.addAttribute("premiumCount", queueNumberService.countPremium());
         model.addAttribute("actualPermission", adminService.setActualPermission(employee));
         model.addAttribute("actualCount", adminService.setActualCount(employee));
         model.addAttribute("employeeCount", adminService.setEmployeeCount(employee));
-
         return "next";
     }
 
