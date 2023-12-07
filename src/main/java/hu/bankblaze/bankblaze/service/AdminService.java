@@ -145,29 +145,16 @@ public class AdminService {
         }
     }
 
-    public void deleteNextQueueNumber(QueueNumber nextQueueNumber) {
-        if (nextQueueNumber != null) {
-            Desk desk = deskService.findDeskByQueueNumber(nextQueueNumber);
-            if (desk != null) {
-                desk.setQueueNumber(null);
-                deskService.saveDesk(desk);
-            }
-            queueNumberRepository.delete(nextQueueNumber);
-        } else {
-            throw new IllegalArgumentException("A nextQueueNumber értéke null, nem törölhető.");
-        }
-    }
-
     public String setActualPermission(Employee employee) {
         Desk desk = deskService.nextQueueNumber(employee);
         String actualPermission = "";
         if (desk != null) {
             if (desk.getQueueNumber().getToRetail()) {
-                actualPermission = "Lakosság";
+                actualPermission = "Lakossági";
             } else if (desk.getQueueNumber().getToCorporate()) {
-                actualPermission = "Vállalat";
+                actualPermission = "Vállalati";
             } else if (desk.getQueueNumber().getToTeller()) {
-                actualPermission = "Pénztár";
+                actualPermission = "Pénztári";
             } else if (desk.getQueueNumber().getToPremium()) {
                 actualPermission = "Prémium";
             }

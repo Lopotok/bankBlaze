@@ -52,8 +52,11 @@
     </table>
 </div>
 
-<h2 id="next-customer"> A következő <span th:text="${actualPermission}"></span>i ügyfél:
-    <span th:text="${desk.getQueueNumber().getName()}"></span></h2>
+<h1 id="next-customer"> A következő <span th:text="${actualPermission}"></span> ügyfél:
+    <span th:text="${desk.getQueueNumber().getName()}" style="color: green;"></span></h1>
+<form th:action="@{/employee/recall}" method="post">
+    <button type="submit" class="btn">Újrahívás</button>
+</form>
 
 <div class="number-direct">
     <form th:action="@{/employee/redirect}" method="get">
