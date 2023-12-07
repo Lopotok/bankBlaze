@@ -64,7 +64,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/closure")
-    public String getClosure(){
+    public String getClosure() {
         Employee employee = adminService.getEmployeeByName(adminService.getLoggedInUsername());
         Desk desk = deskService.nextQueueNumber(employee);
         QueueNumber nextQueueNumber = queueNumberService.getQueueNumberById(desk.getQueueNumber().getId());
@@ -82,7 +82,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/deleteNumber")
-    public String deleteNumber(){
+    public String deleteNumber() {
         Employee employee = adminService.getEmployeeByName(adminService.getLoggedInUsername());
         deskService.deleteNextQueueNumber(employee);
         return "redirect:/employee";

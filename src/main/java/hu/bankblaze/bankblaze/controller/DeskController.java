@@ -37,7 +37,7 @@ public class DeskController {
     }
 
     @PostMapping("next")
-    public String getNextClient(){
+    public String getNextClient() {
         return "redirect:/next";
     }
 

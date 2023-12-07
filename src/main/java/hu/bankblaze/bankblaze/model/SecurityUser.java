@@ -17,9 +17,9 @@ public class SecurityUser implements UserDetails {
 
     public SecurityUser(Employee employee) {
 
-        username= employee.getName();
-        password= employee.getPassword();
-        authorities= Arrays.stream(employee.getRole().split(","))
+        username = employee.getName();
+        password = employee.getPassword();
+        authorities = Arrays.stream(employee.getRole().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 

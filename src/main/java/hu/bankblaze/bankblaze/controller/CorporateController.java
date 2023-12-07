@@ -25,7 +25,7 @@ public class CorporateController {
     }
 
     @PostMapping
-    public String getCorporate (Model model, @RequestParam("id") int number) {
+    public String getCorporate(Model model, @RequestParam("id") int number) {
         model.addAttribute("header", "Vállalati");
         queueNumberService.modifyNumber(corporateService.generateQueueNumber(number));
         queueNumberService.modifyToCorporate(true);

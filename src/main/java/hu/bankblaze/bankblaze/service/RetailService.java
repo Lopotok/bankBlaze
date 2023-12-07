@@ -17,7 +17,7 @@ public class RetailService {
     private RetailRepository retailRepository;
     private QueueNumberRepository queueNumberRepository;
 
-    public List<Retail> getAllRetail () {
+    public List<Retail> getAllRetail() {
         return retailRepository.findAll();
     }
 

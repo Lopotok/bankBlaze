@@ -24,11 +24,11 @@ public class Permission {
     private Employee employee;
 
 
-    private Boolean forRetail=false;
+    private Boolean forRetail = false;
 
-    private Boolean forCorporate=false;
+    private Boolean forCorporate = false;
 
-    private Boolean forTeller=false;
+    private Boolean forTeller = false;
 
-    private Boolean forPremium=false;
+    private Boolean forPremium = false;
 }

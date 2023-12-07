@@ -95,7 +95,6 @@ public class AdminController {
 
         employee.setRole(String.valueOf(defaultRole));
         adminService.saveAdmin(employee);
-
         permissionService.createPermissionForEmployee(employee, defaultPermissionRetail,
                 defaultPermissionCorporate, defaultPermissionTeller, defaultPermissionPremium);
         return "redirect:/admin";

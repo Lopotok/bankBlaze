@@ -36,8 +36,6 @@ import java.util.List;
 public class PageController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
     private AdminService adminService;
     private QueueNumberService queueNumberService;
 
@@ -47,7 +45,7 @@ public class PageController {
     }
 
     @GetMapping("/home")
-    public String goHome (Model model) {
+    public String goHome(Model model) {
         model.addAttribute("newQueueNumber", new QueueNumber());
         return "home";
     }
@@ -81,12 +79,12 @@ public class PageController {
 
     @PostMapping("/login")
     @ResponseBody
-    public RedirectView checkLogin(HttpServletRequest request, @RequestParam("username") String userName,
+    public RedirectView checkLogin(@RequestParam("username") String userName,
                                    @RequestParam String password, RedirectAttributes redirectAttributes) {
         if (adminService.isAdmin(userName, password)) {
             List<GrantedAuthority> adminAuthorities = AuthorityUtils.createAuthorityList("ADMIN");
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password,
-                                                                                                adminAuthorities);
+                    adminAuthorities);
 
             if (SecurityContextHolder.getContext().getAuthentication() == null ||
                     SecurityContextHolder.getContext().getAuthentication()
@@ -97,10 +95,9 @@ public class PageController {
             return new RedirectView("redirect:/admin");
 
         } else if (adminService.isUser(userName, password)) {
-            // Ügyintéző jogosultság hozzáadása
             List<GrantedAuthority> clerkAuthorities = AuthorityUtils.createAuthorityList("USER");
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password,
-                                                                                                clerkAuthorities);
+                    clerkAuthorities);
 
             if (SecurityContextHolder.getContext().getAuthentication() == null ||
                     SecurityContextHolder.getContext().getAuthentication()
@@ -115,6 +112,7 @@ public class PageController {
             return new RedirectView("login");
         }
     }
+
     @GetMapping("/logout")
     public String showLogoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

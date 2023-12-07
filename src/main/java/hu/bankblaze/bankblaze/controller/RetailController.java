@@ -16,13 +16,13 @@ public class RetailController {
     private RetailService retailService;
 
     @GetMapping
-    public String getAllRetail(Model model){
-        model.addAttribute("retails",retailService.getAllRetail());
+    public String getAllRetail(Model model) {
+        model.addAttribute("retails", retailService.getAllRetail());
         return "showRetail";
     }
 
     @PostMapping
-    public String getAllRetail (Model model, @RequestParam("id") int number){
+    public String getAllRetail(Model model, @RequestParam("id") int number) {
         model.addAttribute("header", "Lakossági");
         queueNumberService.modifyNumber(retailService.generateQueueNumber(number));
         queueNumberService.modifyToRetail(true);

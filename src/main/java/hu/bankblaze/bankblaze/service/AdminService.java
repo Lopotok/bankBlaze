@@ -48,20 +48,6 @@ public class AdminService {
         employeeRepository.save(employee);
     }
 
-    public void deleteAdminByName(String name) {
-        try {
-            Employee employee = employeeRepository.findByName(name).orElse(null);
-            if (employee != null) {
-                employeeRepository.delete(employee);
-            }
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-            throw new RuntimeException("Hiba történt az admin törlése közben: " + e.getMessage());
-        }
-    }
-
     public void modifyEmployeeByName(String name, String newRole) {
         Employee employee = employeeRepository.getAdminByName(name);
         employee.setRole(newRole);
@@ -161,8 +147,6 @@ public class AdminService {
         }
         return actualPermission;
     }
-
-
 
     public void deleteAdminAndRelatedData(String name) {
         Employee employee = employeeRepository.findByName(name).orElse(null);

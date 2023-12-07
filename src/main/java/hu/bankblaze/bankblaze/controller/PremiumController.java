@@ -16,7 +16,7 @@ public class PremiumController {
     private QueueNumberService queueNumberService;
 
     @GetMapping
-    public String getPremium (Model model) {
+    public String getPremium(Model model) {
         model.addAttribute("header", "Prémium");
         queueNumberService.modifyToPremium(true);
         queueNumberService.modifyNumber(premiumService.generateQueueNumber());

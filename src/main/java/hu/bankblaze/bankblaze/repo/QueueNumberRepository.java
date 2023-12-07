@@ -17,13 +17,19 @@ public interface QueueNumberRepository extends JpaRepository<QueueNumber, Long> 
     Integer getLastNumber(@Param("firstDigits") int numbers);
 
     QueueNumber findFirstByActiveTrueAndToRetailTrue();
+
     QueueNumber findFirstByActiveTrueAndToCorporateTrue();
+
     QueueNumber findFirstByActiveTrueAndToTellerTrue();
+
     QueueNumber findFirstByActiveTrueAndToPremiumTrue();
 
     int countByActiveIsTrueAndToRetailIsTrue();
+
     int countByActiveIsTrueAndToCorporateIsTrue();
+
     int countByActiveIsTrueAndToTellerIsTrue();
+
     int countByActiveIsTrueAndToPremiumIsTrue();
 
 }

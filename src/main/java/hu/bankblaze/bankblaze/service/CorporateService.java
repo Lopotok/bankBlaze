@@ -23,10 +23,6 @@ public class CorporateService {
         return corporateRepository.findAll();
     }
 
-    public Corporate getCorporateById(Long id) {
-        return corporateRepository.findById(id).orElse(null);
-    }
-
     public int generateQueueNumber(int number) {
         int queueNumber = 0;
         switch (number) {

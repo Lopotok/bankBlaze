@@ -68,10 +68,6 @@ public class DeskService {
         }
     }
 
-    public void saveDesk(Desk desk) {
-        deskRepository.save(desk);
-    }
-
     public Desk nextQueueNumber(Employee employee) {
         Desk desk = getDeskByEmployeeId(employee.getId());
         Permission permission = permissionService.getPermissionByEmployee(employee);
@@ -97,10 +93,6 @@ public class DeskService {
             System.out.println(e.getMessage());
             return null;
         }
-    }
-
-    protected Desk findDeskByQueueNumber(QueueNumber queueNumber) {
-        return deskRepository.findByQueueNumber(queueNumber);
     }
 
     public int countRetailCustomersUnderService() {

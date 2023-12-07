@@ -20,12 +20,11 @@ public class PermissionService {
     private PermissionRepository permissionRepository;
 
 
-
-    public void savePermisson (Permission permission){
+    public void savePermisson(Permission permission) {
         permissionRepository.save(permission);
     }
 
-    public List<Permission> getAllPermissions(){
+    public List<Permission> getAllPermissions() {
         return permissionRepository.findAll();
     }
 
@@ -56,13 +55,14 @@ public class PermissionService {
         permission.setForPremium(newForPremium);
         permissionRepository.save(permission);
     }
+
     public void updatePermissions(Map<String, String> formData) {
         formData.forEach((key, value) -> {
             if (key.startsWith("for")) {
                 String[] parts = key.split("-");
                 if (parts.length == 2) {
                     Long id = Long.parseLong(parts[1]);
-                    Boolean checked = "true".equals(value); 
+                    Boolean checked = "true".equals(value);
                     switch (parts[0]) {
                         case "forRetail":
                             modifyForRetail(id, checked);
@@ -85,7 +85,7 @@ public class PermissionService {
         });
     }
 
-    public Permission getPermissionByEmployee(Employee employee){
+    public Permission getPermissionByEmployee(Employee employee) {
         return permissionRepository.findByEmployeeId(employee.getId());
     }
 
@@ -112,8 +112,7 @@ public class PermissionService {
         savePermisson(permission);
     }
 
-
     public void deleteEmployee(Long id) {
-      permissionRepository.deleteById(id);
+        permissionRepository.deleteById(id);
     }
 }

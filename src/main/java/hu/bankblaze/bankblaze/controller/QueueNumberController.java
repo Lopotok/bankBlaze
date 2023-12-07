@@ -14,7 +14,7 @@ public class QueueNumberController {
     private QueueNumberService queueNumberService;
 
     @GetMapping("/showNumber")
-    public String showQueueNumberPage(Model model) throws Exception{
+    public String showQueueNumberPage(Model model) throws Exception {
         model.addAttribute("queueNumber", queueNumberService.getQueueNumber());
         model.addAttribute("count", queueNumberService.getCount());
         return "showNumber";

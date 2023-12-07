@@ -1,12 +1,9 @@
 package hu.bankblaze.bankblaze.service;
 
-import hu.bankblaze.bankblaze.model.Desk;
 import hu.bankblaze.bankblaze.model.QueueNumber;
-import hu.bankblaze.bankblaze.repo.DeskRepository;
 import hu.bankblaze.bankblaze.repo.QueueNumberRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -30,13 +27,14 @@ public class QueueNumberService {
         }
     }
 
-    public void deleteAllQueueNumbers () {
+    public void deleteAllQueueNumbers() {
         try {
             queueNumberRepository.deleteAll();
         } catch (Exception e) {
             throw new RuntimeException("Nem sikerült az összes entitás törlése.", e);
         }
     }
+
     public QueueNumber getQueueNumber() {
         return queueNumberRepository.findFirstByOrderByIdDesc();
     }
@@ -108,11 +106,19 @@ public class QueueNumberService {
 
     public int getCount() throws Exception {
         String number = String.valueOf(getQueueNumber().getNumber());
-        switch (number.substring(0,1)) {
-            case "1" -> {return countRetail();}
-            case "2" -> {return countCorporate();}
-            case "3" -> {return countTeller();}
-            case "9" -> {return countPremium();}
+        switch (number.substring(0, 1)) {
+            case "1" -> {
+                return countRetail();
+            }
+            case "2" -> {
+                return countCorporate();
+            }
+            case "3" -> {
+                return countTeller();
+            }
+            case "9" -> {
+                return countPremium();
+            }
         }
         throw new Exception();
     }
@@ -135,20 +141,14 @@ public class QueueNumberService {
         return queueNumberRepository.findFirstByActiveTrueAndToPremiumTrue();
     }
 
-    public QueueNumber getSmallestNumber(List<QueueNumber> queueNumberList){
+    public QueueNumber getSmallestNumber(List<QueueNumber> queueNumberList) {
         Long minIndex = queueNumberList.get(0).getId();
         for (int i = 1; i < queueNumberList.size(); i++) {
-            if (minIndex > queueNumberList.get(i).getId()){
+            if (minIndex > queueNumberList.get(i).getId()) {
                 minIndex = queueNumberList.get(i).getId();
             }
-        } return getQueueNumberById(minIndex);
+        }
+        return getQueueNumberById(minIndex);
     }
 
-
-
 }
-
-
-
-
-
