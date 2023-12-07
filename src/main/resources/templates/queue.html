@@ -26,7 +26,8 @@
     <tbody>
     <tr th:each="desk : ${desks}" th:id="'row'+ ${desk.getId()}">
         <td th:id="'desk' + ${desk.getId()}" th:text="'0' + ${desk.id}"></td>
-        <td th:id="'queueNumber' + ${desk.getId()}" th:text="${desk.queueNumber.getNumber()}" class=""></td>
+        <td th:id="'queueNumber' + ${desk.getId()}"
+            th:text="${desk.queueNumber.getNumber()}" class=""></td>
     </tr>
     </tbody>
 </table>

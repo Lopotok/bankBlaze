@@ -88,26 +88,6 @@ public class PermissionService {
     public Permission getPermissionByEmployee(Employee employee){
         return permissionRepository.findByEmployeeId(employee.getId());
     }
-    public String getPermissionByLoggedInUser(Long loggedInUserId) {
-        Permission permission = permissionRepository.findByEmployeeId(loggedInUserId);
-        if (permission != null) {
-            if (Boolean.TRUE.equals(permission.getForCorporate())) {
-                return "Vállalat";
-            } else if (Boolean.TRUE.equals(permission.getForRetail())) {
-                return "Lakosság";
-            } else if (Boolean.TRUE.equals(permission.getForTeller())) {
-                return  "Pénztár";
-            } else if (Boolean.TRUE.equals(permission.getForPremium())) {
-                return "Prémium";
-            } else {
-                return "Nincsenek engedélyek";
-            }
-        } else {
-            return "Nincs ilyen azonosítójú felhasználó";
-        }
-
-    }
-
 
     public Long getNextPermissionId() {
         Long maxId = permissionRepository.findMaxId();

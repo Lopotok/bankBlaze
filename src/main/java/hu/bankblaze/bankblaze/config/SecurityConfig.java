@@ -51,7 +51,10 @@ public class SecurityConfig {
                                 "/webjars/sockjs-client/sockjs.min.js",
                                 "/webjars/stomp-websocket/stomp.min.js",
                                 "/SocketConfig.js",
-                                "/bankBlaze-websocket/**").permitAll()
+                                "/bankBlaze-websocket/**",
+                                "/topic/**",
+                                "/app",
+                                "/topic/app").permitAll()
                         .requestMatchers("/audio/notification.mp3",
                                 "/audio/**").permitAll()
                         .anyRequest().authenticated()

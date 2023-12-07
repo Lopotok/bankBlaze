@@ -9,7 +9,7 @@
 <header>
     <h1 class="admin-name" th:text="${admins.get(0).getName() + ' - Jogosultságok'}"></h1>
     <h3 class="logout-btn"><a th:href="@{/logout}">Kijelentkezés</a></h3>
-    <form th:action="@{admin/eod}" method="post">
+    <form th:action="@{/admin/eod}" method="post">
         <button class="end-btn" type="submit">Napzárás</button>
     </form>
 </header>

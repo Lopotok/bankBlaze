@@ -102,10 +102,6 @@ public class DeskService {
         return deskRepository.findByQueueNumber(queueNumber);
     }
 
-    public int countCustomersUnderService() {
-        return deskRepository.countByQueueNumberIsNotNull();
-    }
-
     public int countRetailCustomersUnderService() {
         return deskRepository.countByQueueNumberIsNotNullAndQueueNumberToRetailIsTrue();
     }
@@ -120,5 +116,23 @@ public class DeskService {
 
     public int countPremiumCustomersUnderService() {
         return deskRepository.countByQueueNumberIsNotNullAndQueueNumberToPremiumIsTrue();
+    }
+
+    public void deleteQueueNumbersFromAllTheDesks() {
+        List<Desk> desks = getAllDesks();
+        for (int i = 0; i < desks.size(); i++) {
+            Desk desk = desks.get(i);
+            desk.setQueueNumber(null);
+            deskRepository.save(desk);
+        }
+    }
+
+    public void deleteEmployeesFromAllTheDesks() {
+        List<Desk> desks = getAllDesks();
+        for (int i = 0; i < desks.size(); i++) {
+            Desk desk = desks.get(i);
+            desk.setEmployee(null);
+            deskRepository.save(desk);
+        }
     }
 }

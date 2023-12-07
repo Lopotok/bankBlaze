@@ -1,5 +1,6 @@
 package hu.bankblaze.bankblaze.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "permission")
+@JsonIgnoreProperties("employee")
 public class Permission {
 
     @Id
@@ -29,8 +31,4 @@ public class Permission {
     private Boolean forTeller=false;
 
     private Boolean forPremium=false;
-
-    public void setForRetail(Boolean forRetail) {
-        this.forRetail = forRetail;
-    }
 }

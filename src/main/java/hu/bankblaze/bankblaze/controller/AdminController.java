@@ -1,10 +1,7 @@
 package hu.bankblaze.bankblaze.controller;
 
-import hu.bankblaze.bankblaze.model.Desk;
 import hu.bankblaze.bankblaze.model.Employee;
 import hu.bankblaze.bankblaze.model.Permission;
-import hu.bankblaze.bankblaze.repo.DeskRepository;
-import hu.bankblaze.bankblaze.repo.EmployeeRepository;
 import hu.bankblaze.bankblaze.service.AdminService;
 import hu.bankblaze.bankblaze.service.DeskService;
 import hu.bankblaze.bankblaze.service.PermissionService;
@@ -129,6 +126,8 @@ public class AdminController {
 
     @PostMapping("/eod")
     public String endOfDay() {
+        deskService.deleteQueueNumbersFromAllTheDesks();
+        deskService.deleteEmployeesFromAllTheDesks();
         queueNumberService.deleteAllQueueNumbers();
         return "redirect:/admin";
     }

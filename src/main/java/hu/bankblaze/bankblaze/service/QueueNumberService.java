@@ -15,13 +15,10 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class QueueNumberService {
 
     @Autowired
     private QueueNumberRepository queueNumberRepository;
-    private DeskRepository deskRepository;
-
 
 
     public void deleteQueueNumberById(Long id) {
@@ -35,23 +32,11 @@ public class QueueNumberService {
 
     public void deleteAllQueueNumbers () {
         try {
-            List<QueueNumber> allQueueNumbers = queueNumberRepository.findAll();
-
-            for (QueueNumber queueNumber : allQueueNumbers) {
-                // Eltávolítjuk a QueueNumber hivatkozását a Deskről
-                List<Desk> desksWithQueueNumber = deskRepository.findDeskByQueueNumber(queueNumber);
-                for (Desk desk : desksWithQueueNumber) {
-                    desk.setQueueNumber(null);
-                    deskRepository.save(desk);
-                }
-            }
-            // Majd töröljük az összes QueueNumber-t
             queueNumberRepository.deleteAll();
         } catch (Exception e) {
             throw new RuntimeException("Nem sikerült az összes entitás törlése.", e);
         }
     }
-
     public QueueNumber getQueueNumber() {
         return queueNumberRepository.findFirstByOrderByIdDesc();
     }
@@ -158,6 +143,7 @@ public class QueueNumberService {
             }
         } return getQueueNumberById(minIndex);
     }
+
 
 
 }

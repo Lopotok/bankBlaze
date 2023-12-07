@@ -1,6 +1,7 @@
 package hu.bankblaze.bankblaze.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "queue_number")
+@JsonIgnoreProperties("desks")
 public class QueueNumber {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
